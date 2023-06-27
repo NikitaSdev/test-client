@@ -1,12 +1,14 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-import { removeTokensStorage } from "@/services/auth/auth.helper"
-import { AuthService } from "@/services/auth/auth.service"
 
-import { API_SERVER_URL } from "../config/api.config"
+
+
 
 import { errorCatch } from "./api.helpers"
+import {API_SERVER_URL} from "@/src/api/api.config";
+import {removeTokensStorage} from "@/src/services/auth/auth.helper";
+import {AuthService} from "@/src/services/auth/auth.service";
 
 const instance = axios.create({
 	baseURL: API_SERVER_URL,

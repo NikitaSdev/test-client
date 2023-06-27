@@ -1,26 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { toastr } from "react-redux-toastr"
 
-import { AuthService } from "@/services/auth/auth.service"
-
-
-
-import { IAuthResponse, IEmailPassword } from "@/store/user/user.interface"
 
 
 import {toastError} from "@/src/utils/toastError";
 import {errorCatch} from "@/src/utils/api.helpers";
+import {AuthService} from "@/src/services/auth/auth.service";
+import {IAuthResponse, IEmailPassword, IRegister} from "@/src/store/user/user.interface";
 
-export const register = createAsyncThunk<IAuthResponse, IEmailPassword>(
+export const register = createAsyncThunk<IAuthResponse, IRegister>(
 	"auth/register",
-	// @ts-ignore
-	async ({ email, password, login, pseudonim }, thunkAPI) => {
+	async ({ email, password, login }, thunkAPI) => {
 		try {
 			const response = await AuthService.register(
 				email,
 				password,
-				login,
-				pseudonim
+				login
 			)
 			toastr.success("Успешно", "Теперь подтвердите почту")
 			return response.data
