@@ -1,9 +1,9 @@
 import Meta from "@/src/utils/meta/Meta"
 
-export default function Home() {
+export default function Auth() {
   return (
     <>
-      <Meta title={"Главная"} />
+      <Meta title={"Авторизация"} />
       <main>asda</main>
     </>
   )
