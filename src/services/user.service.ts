@@ -28,6 +28,21 @@ export const UserService = {
       toastr.error("Что-то пошло не так", "")
     }
   },
-  async acceptRequest() {},
-  async declineRequest() {}
+  async acceptRequest(userId: number, senderId: number) {
+    return await axios.post(
+      `${API_URL}${getUsersUrl("/acceptFriendRequest")}`,
+      {
+        userId,
+        senderId
+      }
+    )
+  },
+  async declineRequest(requestId: number) {
+    return await axios.post(
+      `${API_URL}${getUsersUrl("/declineFriendRequest")}`,
+      {
+        requestId
+      }
+    )
+  }
 }

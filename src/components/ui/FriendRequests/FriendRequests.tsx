@@ -5,26 +5,30 @@ import RequestCard from "@/src/components/ui/FriendRequests/RequestCard"
 import { v4 } from "uuid"
 import { IRequest } from "@/src/interfaces/request.interface"
 import { it } from "node:test"
+import { useState } from "react"
 
 const FriendRequests = () => {
   const { user } = useAuth()
+  const [isRefetchNeeded, setisRefetchNeeded] = useState(false)
   const getFriendRequests = async () => {
     if (user) return await UserService.getFriendRequest(user.id)
   }
   const { isLoading, data } = useQuery({
-    queryKey: ["getFriendRequests"],
+    queryKey: ["getFriendRequests", isRefetchNeeded],
     queryFn: getFriendRequests
   })
-  console.log(data)
 
   return (
     <div>
-      {!isLoading &&
+      {user &&
+        !isLoading &&
         data &&
         data.map((item: IRequest) => (
           <RequestCard
+            setIsRefetchNeeded={setisRefetchNeeded}
             key={v4()}
-            id={item.id}
+            requestId={item.id}
+            userId={user.id}
             createdAt={item.createdAt}
             sender={item.sender}
           />

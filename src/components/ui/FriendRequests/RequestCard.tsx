@@ -1,24 +1,33 @@
-import { FC } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import { useDate } from "@/src/hooks/useDate"
 import { UserService } from "@/src/services/user.service"
-import { useQuery } from "@tanstack/react-query"
 import { BsFillPersonDashFill, BsFillPersonPlusFill } from "react-icons/bs"
 import Image from "next/image"
 import { ISender } from "@/src/interfaces/request.interface"
 
 interface IRequestCard {
-  id: number
+  requestId: number
+  userId: number
   createdAt: Date
   sender: ISender
+  setIsRefetchNeeded: Dispatch<SetStateAction<boolean>>
 }
 
-const RequestCard: FC<IRequestCard> = ({ id, sender, createdAt }) => {
+const RequestCard: FC<IRequestCard> = ({
+  setIsRefetchNeeded,
+  requestId,
+  userId,
+  sender,
+  createdAt
+}) => {
   const date = useDate(new Date(createdAt))
   const acceptRequest = async () => {
-    return await UserService.acceptFriendRequest()
+    await UserService.acceptRequest(userId, sender.id)
+    setIsRefetchNeeded((prev) => !prev)
   }
   const declineRequest = async () => {
-    return await UserService.declineRequest()
+    await UserService.declineRequest(requestId)
+    setIsRefetchNeeded((prev) => !prev)
   }
   return (
     <div>
