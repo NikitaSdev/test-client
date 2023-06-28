@@ -1,7 +1,7 @@
 import axios from "axios"
 
 import { removeTokensStorage, saveToStorage } from "./auth.helper"
-import { IAuthResponse } from "@/src/store/user/user.interface"
+import { IAuthResponse } from "@/src/interfaces/user.interface"
 
 import Cookies from "js-cookie"
 import { getContentType } from "@/src/utils/api.helpers"
@@ -24,11 +24,11 @@ export const AuthService = {
     }
     return response
   },
-  async login(email: string, password: string) {
+  async login(emailOrLogin: string, password: string) {
     const response = await axios.post<IAuthResponse>(
       `${API_URL}${getAuthUrl("/login")}`,
       {
-        email,
+        emailOrLogin,
         password
       }
     )

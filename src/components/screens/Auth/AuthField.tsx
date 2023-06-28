@@ -1,21 +1,15 @@
-import React, {
-  ChangeEvent,
-  FC,
-  FormEvent,
-  useEffect,
-  useRef,
-  useState
-} from "react"
-import { FormState, UseFormRegister, useForm } from "react-hook-form"
+import { FC } from "react"
 
 import { validEmail } from "@/src/components/screens/Auth/regex"
 import Field from "@/src/components/ui/form-elements/Field"
+import { FormState, UseFormRegister, UseFormWatch } from "react-hook-form"
+import { ILogin, IRegister } from "@/src/interfaces/user.interface"
 
 interface IAuthFields {
-  register: any
-  formState: any
+  register: UseFormRegister<IRegister & ILogin>
+  formState: FormState<IRegister & ILogin>
   isPasswordRequired?: boolean
-  watch: any
+  watch: UseFormWatch<IRegister & ILogin>
   isLogin: "login" | "register" | "newPassword"
 }
 const AuthField: FC<IAuthFields> = ({

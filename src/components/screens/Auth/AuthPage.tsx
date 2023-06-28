@@ -1,7 +1,7 @@
 import { useAuth } from "@/src/hooks/useAuth"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { ILogin, IRegister } from "@/src/store/user/user.interface"
+import { ILogin, IRegister } from "@/src/interfaces/user.interface"
 import { useActions } from "@/src/hooks/useActions"
 import AuthField from "@/src/components/screens/Auth/AuthField"
 import { useAuthRedirect } from "@/src/hooks/useAuthRedirect"
@@ -21,7 +21,6 @@ const AuthPage = () => {
   })
   const { login, register } = useActions()
   const onSubmit: SubmitHandler<IRegister & ILogin> = (data) => {
-    console.log(data)
     if (type === "register") {
       register(data)
     } else {

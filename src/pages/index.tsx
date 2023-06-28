@@ -3,6 +3,8 @@ import MainContainer from "@/src/components/containers/MainContainer/MainContain
 import { GetStaticProps } from "next"
 import { UserService } from "@/src/services/user.service"
 import { DeedService } from "@/src/services/deed.service"
+import { useAuth } from "@/src/hooks/useAuth"
+import Link from "next/link"
 
 export default function Home({
   usersCount,
@@ -11,14 +13,30 @@ export default function Home({
   usersCount: number
   deedCount: number
 }) {
+  const { user } = useAuth()
   return (
     <>
       <Meta title={"Главная"} />
       <MainContainer>
         <section>
           <h1>На этом сайте вы можете записывать свои добрые дела</h1>
-          <div>Нас уже - {usersCount} </div>
-          <div>Мы сделали {deedCount} добрых дел</div>
+          <div>
+            <h1>Нас уже - {usersCount} </h1>
+          </div>
+          <div>
+            <h1>Мы сделали {deedCount} добрых дел</h1>
+          </div>
+          <section>
+            {user ? (
+              <Link href={"/good-deeds"}>
+                <button>Записать свое доброе дело</button>
+              </Link>
+            ) : (
+              <Link href={"/auth"}>
+                <button>Присоединиться к нам</button>
+              </Link>
+            )}
+          </section>
         </section>
       </MainContainer>
     </>

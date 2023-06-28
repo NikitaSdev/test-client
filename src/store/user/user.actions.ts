@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { toastr } from "react-redux-toastr"
 
 import { toastError } from "@/src/utils/toastError"
 import { errorCatch } from "@/src/utils/api.helpers"
@@ -8,7 +7,7 @@ import {
   IAuthResponse,
   ILogin,
   IRegister
-} from "@/src/store/user/user.interface"
+} from "@/src/interfaces/user.interface"
 
 export const register = createAsyncThunk<IAuthResponse, IRegister>(
   "auth/register",
