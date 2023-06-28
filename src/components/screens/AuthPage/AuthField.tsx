@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { validEmail } from "@/src/components/screens/Auth/regex"
+import { validEmail } from "@/src/components/screens/AuthPage/regex"
 import Field from "@/src/components/ui/form-elements/Field"
 import { FormState, UseFormRegister, UseFormWatch } from "react-hook-form"
 import { ILogin, IRegister } from "@/src/interfaces/user.interface"

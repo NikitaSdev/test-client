@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query"
 import { v4 as uuidv4 } from "uuid"
 import { IDeed } from "@/src/interfaces/deed.interface"
 import DeedCard from "@/src/components/ui/DeedCard/DeedCard"
+import Meta from "@/src/utils/meta/Meta"
 
 const GoodDeeds = () => {
   const { user } = useAuth()
@@ -25,25 +26,28 @@ const GoodDeeds = () => {
     queryKey: ["getDeeds", isRefetchNeeded],
     queryFn: getDeeds
   })
-  console.log(data)
+
   return (
-    <MainContainer>
-      <CreateDeed setIsRefetchNeeded={setIsRefetchNeeded} />
-      {!isLoading && data && (
-        <section onClick={() => setIsRefetchNeeded((prev) => !prev)}>
-          {data.map((item: IDeed) => (
-            <DeedCard
-              setIsRefetchNeeded={setIsRefetchNeeded}
-              key={item.id}
-              title={item.title}
-              id={item.id}
-              description={item.description}
-              createdAt={item.createdAt}
-            />
-          ))}
-        </section>
-      )}
-    </MainContainer>
+    <>
+      <Meta title={"Ваши добрые дела"} />
+      <MainContainer>
+        <CreateDeed setIsRefetchNeeded={setIsRefetchNeeded} />
+        {!isLoading && data && (
+          <section onClick={() => setIsRefetchNeeded((prev) => !prev)}>
+            {data.map((item: IDeed) => (
+              <DeedCard
+                setIsRefetchNeeded={setIsRefetchNeeded}
+                key={item.id}
+                title={item.title}
+                id={item.id}
+                description={item.description}
+                createdAt={item.createdAt}
+              />
+            ))}
+          </section>
+        )}
+      </MainContainer>
+    </>
   )
 }
 
