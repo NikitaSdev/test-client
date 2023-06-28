@@ -5,6 +5,7 @@ import { UserService } from "@/src/services/user.service"
 import { DeedService } from "@/src/services/deed.service"
 import { useAuth } from "@/src/hooks/useAuth"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 export default function Home({
   usersCount,
@@ -14,6 +15,10 @@ export default function Home({
   deedCount: number
 }) {
   const { user } = useAuth()
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   return (
     <>
       <Meta title={"Главная"} />
@@ -27,7 +32,7 @@ export default function Home({
             <h1>Мы сделали {deedCount} добрых дел</h1>
           </div>
           <section>
-            {user ? (
+            {isClient && user ? (
               <Link href={"/good-deeds"}>
                 <button>Записать свое доброе дело</button>
               </Link>
