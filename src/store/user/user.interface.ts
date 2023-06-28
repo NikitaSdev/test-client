@@ -27,7 +27,8 @@ export interface IRegister {
   name: string
   password: string
 }
-export interface IEmailPassword {
+
+export interface ILogin {
   emailOrLogin: string
   password: string
 }

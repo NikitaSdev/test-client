@@ -5,16 +5,17 @@ import { IAuthResponse } from "@/src/store/user/user.interface"
 
 import Cookies from "js-cookie"
 import { getContentType } from "@/src/utils/api.helpers"
-import { APP_URL, getAuthUrl } from "@/src/config/api.config"
+import { API_URL, getAuthUrl } from "@/src/config/api.config"
 
 export const AuthService = {
-  async register(email: string, password: string, login: string) {
+  async register(email: string, password: string, login: string, name: string) {
     const response = await axios.post<IAuthResponse>(
-      `${APP_URL}${getAuthUrl("/register")}`,
+      `${API_URL}${getAuthUrl("/register")}`,
       {
         email,
         password,
-        login
+        login,
+        name
       }
     )
 
@@ -25,7 +26,7 @@ export const AuthService = {
   },
   async login(email: string, password: string) {
     const response = await axios.post<IAuthResponse>(
-      `${APP_URL}${getAuthUrl("/login")}`,
+      `${API_URL}${getAuthUrl("/login")}`,
       {
         email,
         password
@@ -45,7 +46,7 @@ export const AuthService = {
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken")
     const response = await axios.post<IAuthResponse>(
-      `${APP_URL}${getAuthUrl("/login/access-token")}`,
+      `${API_URL}${getAuthUrl("/login/access-token")}`,
       {
         refreshToken
       },

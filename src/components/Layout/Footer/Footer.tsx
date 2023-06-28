@@ -5,12 +5,7 @@ import styles from "./Footer.module.scss"
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>
-        Тестовое задание от Никиты Андрюшкевича
-        <br />
-        для{" "}
-        <Link href={"https://ezrababait.co.il"}>https://ezrababait.co.il</Link>
-      </p>
+      <p>Тестовое задание Никиты Андрюшкевича</p>
 
       <Link href={"https://github.com/NikitaSdev"} target={"_blank"} rel={"no"}>
         <div>

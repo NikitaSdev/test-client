@@ -6,16 +6,15 @@ import { errorCatch } from "@/src/utils/api.helpers"
 import { AuthService } from "@/src/services/auth/auth.service"
 import {
   IAuthResponse,
-  IEmailPassword,
+  ILogin,
   IRegister
 } from "@/src/store/user/user.interface"
 
 export const register = createAsyncThunk<IAuthResponse, IRegister>(
   "auth/register",
-  async ({ email, password, login }, thunkAPI) => {
+  async ({ email, password, login, name }, thunkAPI) => {
     try {
-      const response = await AuthService.register(email, password, login)
-      toastr.success("Успешно", "Теперь подтвердите почту")
+      const response = await AuthService.register(email, password, login, name)
       return response.data
     } catch (e: unknown) {
       toastError(e, "Ошибка")
@@ -24,7 +23,7 @@ export const register = createAsyncThunk<IAuthResponse, IRegister>(
   }
 )
 
-export const login = createAsyncThunk<IAuthResponse, IEmailPassword>(
+export const login = createAsyncThunk<IAuthResponse, ILogin>(
   "auth/login",
   async ({ emailOrLogin, password }, thunkAPI) => {
     try {
