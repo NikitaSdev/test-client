@@ -32,7 +32,6 @@ const HeadProvider: FC<{ children: ReactNode }> = ({ children }) => {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#2b5797" />
         <link rel="manifest" href="/site.webmanifest"></link>
         <meta charSet={"UTF-8"} />
@@ -41,11 +40,10 @@ const HeadProvider: FC<{ children: ReactNode }> = ({ children }) => {
           content={"width=device-width, initial-scale=1,maximum-scale=1.0"}
         />
         <Favicons />
-        <meta name={"theme-color"} content={"#8b54fd"} />
-        <meta name={"msapplication-navbutton-color"} content={"#18b54fd"} />
+        <meta name={"theme-color"} content={"#FFFFFF"} />
         <meta
           name={"apple-mobile-web-app-status-bar-style"}
-          content={"#8b54fd"}
+          content={"#FFFFFF"}
         />
       </Head>
       {children}
