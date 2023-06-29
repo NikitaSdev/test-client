@@ -28,6 +28,7 @@ const Profile: FC<{ id: string }> = ({ id }) => {
     queryKey: ["getAnotherUserDeeds"],
     queryFn: getAnotherUserDeeds
   })
+  console.log(anotherUser)
   return (
     !isLoading && (
       <>
@@ -45,7 +46,7 @@ const Profile: FC<{ id: string }> = ({ id }) => {
           </p>
         </section>
         <section>
-          {anotherUser.deeds.length ? (
+          {anotherUser.deeds ? (
             <h1>Что хорошего сделал {anotherUser.name}</h1>
           ) : (
             <h1>{anotherUser.name} пока что ничего не сделал</h1>

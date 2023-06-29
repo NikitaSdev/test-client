@@ -11,7 +11,8 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { IUpdateProfile, IUser } from "@/src/interfaces/user.interface"
 import UploadFile from "@/src/components/ui/form-elements/UploadField/UploadFile"
 import Meta from "@/src/utils/meta/Meta"
-
+import styles from "./profile.module.scss"
+import clsx from "clsx"
 const Profile = () => {
   const { user } = useAuth()
   const router = useRouter()
@@ -56,7 +57,15 @@ const Profile = () => {
     user && (
       <>
         <Meta title={"Профиль"} />
-        <section style={{ background: `url(${profile.wrapperURL})` }}>
+        <section
+          className={styles.profile}
+          style={{
+            background: `url(${profile.wrapperURL})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover"
+          }}
+        >
           <div>
             <Image
               src={profile.avatarURL}
@@ -64,78 +73,83 @@ const Profile = () => {
               width={250}
               height={250}
             />
-            {isEdit ? (
-              <form onSubmit={handleSubmit(handleBio)}>
-                <Field
-                  placeholder={"Ваше имя"}
-                  type={"text"}
-                  defaultValue={user.name}
-                  {...register("name")}
-                />
-                <Field
-                  placeholder={"Описание"}
-                  type={"text"}
-                  defaultValue={user.description}
-                  {...register("description")}
-                />
-                <button>Отправить</button>
-              </form>
-            ) : (
-              <div>
-                <h1>{profile.name} </h1>
-                <p>{profile.description} </p>
-              </div>
-            )}
-            <div>
+            <div className={clsx({ [styles.reverse]: isEdit })}>
               {isEdit ? (
-                <button onClick={() => setIsEdit(false)}>
-                  <MdClose />
-                </button>
+                <form onSubmit={handleSubmit(handleBio)}>
+                  <Field
+                    placeholder={"Ваше имя"}
+                    type={"text"}
+                    defaultValue={user.name}
+                    {...register("name")}
+                  />
+                  <Field
+                    placeholder={"Описание"}
+                    type={"text"}
+                    defaultValue={user.description}
+                    {...register("description")}
+                  />
+                  <div style={{ display: "flex", marginTop: 20, gap: 10 }}>
+                    {isEdit && (
+                      <button onClick={() => setIsEdit(false)}>
+                        <MdClose />
+                      </button>
+                    )}
+                    <button>Отправить</button>
+                  </div>
+                </form>
               ) : (
-                <button onClick={() => setIsEdit(true)}>
-                  <MdEdit />
-                </button>
+                <div>
+                  <h1>{profile.name} </h1>
+                  <p>{profile.description} </p>
+                </div>
+              )}
+              <div style={{ display: "flex", marginTop: 20, gap: 10 }}>
+                {!isEdit && (
+                  <button onClick={() => setIsEdit(true)}>
+                    <MdEdit />
+                  </button>
+                )}
+              </div>
+              {isEdit && (
+                <form onSubmit={handleBio}>
+                  <Controller
+                    control={control}
+                    name={"avatarURL"}
+                    defaultValue={""}
+                    render={({
+                      field: { value, onChange },
+                      fieldState: { error }
+                    }) => (
+                      <UploadFile
+                        onChange={onChange}
+                        placeholder={"Аватар"}
+                        error={error}
+                        value={value}
+                        folder={"avatars"}
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name={"wrapperURL"}
+                    defaultValue={""}
+                    render={({
+                      field: { value, onChange },
+                      fieldState: { error }
+                    }) => (
+                      <UploadFile
+                        onChange={onChange}
+                        placeholder={"Обложка"}
+                        error={error}
+                        value={value}
+                        folder={"wrappers"}
+                      />
+                    )}
+                  />
+                </form>
               )}
             </div>
           </div>
-          {isEdit && (
-            <form onSubmit={handleBio}>
-              <Controller
-                control={control}
-                name={"avatarURL"}
-                defaultValue={""}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error }
-                }) => (
-                  <UploadFile
-                    onChange={onChange}
-                    placeholder={"Аватар"}
-                    error={error}
-                    value={value}
-                    folder={"avatars"}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                name={"wrapperURL"}
-                defaultValue={""}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error }
-                }) => (
-                  <UploadFile
-                    onChange={onChange}
-                    placeholder={"Обложка"}
-                    error={error}
-                    value={value}
-                    folder={"wrappers"}
-                  />
-                )}
-              />
-            </form>
-          )}
           <button onClick={() => logout()}>Выйти</button>
         </section>
       </>
