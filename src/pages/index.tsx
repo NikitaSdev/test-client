@@ -22,28 +22,27 @@ export default function Home({
   return (
     <>
       <Meta title={"Главная"} />
-      <MainContainer>
+
+      <section>
+        <h1>На этом сайте вы можете записывать свои добрые дела</h1>
+        <div>
+          <h1>Нас уже - {usersCount} </h1>
+        </div>
+        <div>
+          <h1>Мы сделали {deedCount} добрых дел</h1>
+        </div>
         <section>
-          <h1>На этом сайте вы можете записывать свои добрые дела</h1>
-          <div>
-            <h1>Нас уже - {usersCount} </h1>
-          </div>
-          <div>
-            <h1>Мы сделали {deedCount} добрых дел</h1>
-          </div>
-          <section>
-            {isClient && user ? (
-              <Link href={"/good-deeds"}>
-                <button>Записать свое доброе дело</button>
-              </Link>
-            ) : (
-              <Link href={"/auth"}>
-                <button>Присоединиться к нам</button>
-              </Link>
-            )}
-          </section>
+          {isClient && user ? (
+            <Link href={"/good-deeds"}>
+              <button>Записать свое доброе дело</button>
+            </Link>
+          ) : (
+            <Link href={"/auth"}>
+              <button>Присоединиться к нам</button>
+            </Link>
+          )}
         </section>
-      </MainContainer>
+      </section>
     </>
   )
 }

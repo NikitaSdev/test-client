@@ -26,27 +26,25 @@ const GoodDeeds = () => {
     queryKey: ["getDeeds", isRefetchNeeded],
     queryFn: getDeeds
   })
-
+  console.log(data)
   return (
     <>
       <Meta title={"Ваши добрые дела"} />
-      <MainContainer>
-        <CreateDeed setIsRefetchNeeded={setIsRefetchNeeded} />
-        {!isLoading && data && (
-          <section onClick={() => setIsRefetchNeeded((prev) => !prev)}>
-            {data.map((item: IDeed) => (
-              <DeedCard
-                setIsRefetchNeeded={setIsRefetchNeeded}
-                key={item.id}
-                title={item.title}
-                id={item.id}
-                description={item.description}
-                createdAt={item.createdAt}
-              />
-            ))}
-          </section>
-        )}
-      </MainContainer>
+      <CreateDeed setIsRefetchNeeded={setIsRefetchNeeded} />
+      {!isLoading && data && (
+        <section onClick={() => setIsRefetchNeeded((prev) => !prev)}>
+          {data.map((item: IDeed) => (
+            <DeedCard
+              setIsRefetchNeeded={setIsRefetchNeeded}
+              key={item.id}
+              title={item.title}
+              id={item.id}
+              description={item.description}
+              createdAt={item.createdAt}
+            />
+          ))}
+        </section>
+      )}
     </>
   )
 }

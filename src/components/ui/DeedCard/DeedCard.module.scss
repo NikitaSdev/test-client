@@ -1,0 +1,16 @@
+.deedCard {
+  margin: 20px 0;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  div:nth-child(2) {
+    button {
+      margin-left: 8px;
+    }
+  }
+}

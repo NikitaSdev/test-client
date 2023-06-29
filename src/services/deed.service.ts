@@ -6,10 +6,13 @@ import { toastr } from "react-redux-toastr"
 export const DeedService = {
   async getDeeds(id: number) {
     try {
-      const { data } = await axios.get(`${API_URL}${getUsersUrl("/deed")}`, {
-        data: id
-      })
-
+      console.log(id)
+      const { data } = await axios.post(
+        `${API_URL}${getUsersUrl("/get-deeds")}`,
+        {
+          userId: id
+        }
+      )
       return data
     } catch (e) {
       toastr.error("что-то пошло не так", "")
@@ -31,7 +34,7 @@ export const DeedService = {
       return await axios.patch(`${API_URL}${getUsersUrl("/deed")}`, {
         title: data.title,
         description: data.description,
-        id
+        deedId: id
       })
     } catch (e) {
       toastr.error("Что-то пошло не так", "")

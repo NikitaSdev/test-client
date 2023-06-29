@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+  background: var(--layout-bg);
+  > div {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  button {
+    a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+  ul {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+  }
+}

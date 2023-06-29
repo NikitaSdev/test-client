@@ -4,7 +4,7 @@ import { useDate } from "@/src/hooks/useDate"
 import { MdClose, MdDelete, MdEdit } from "react-icons/md"
 import Field from "@/src/components/ui/form-elements/Field"
 import { DeedService } from "@/src/services/deed.service"
-import { toastr } from "react-redux-toastr"
+import styles from "./DeedCard.module.scss"
 import { SubmitHandler, useForm } from "react-hook-form"
 
 const DeedCard: FC<
@@ -45,18 +45,20 @@ const DeedCard: FC<
       <button>Отправить</button>
     </form>
   ) : (
-    <div>
+    <div className={styles.deedCard}>
       <div>
         <p>{date}</p>
         <h1>{title}</h1>
         <p>{description}</p>
       </div>
-      <button onClick={() => setIsEditMode(true)}>
-        <MdEdit />
-      </button>
-      <button onClick={() => handleDelete(id)}>
-        <MdDelete />
-      </button>
+      <div>
+        <button onClick={() => setIsEditMode(true)}>
+          <MdEdit />
+        </button>
+        <button onClick={() => handleDelete(id)}>
+          <MdDelete />
+        </button>
+      </div>
     </div>
   )
 }

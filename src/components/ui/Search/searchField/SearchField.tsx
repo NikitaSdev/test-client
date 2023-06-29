@@ -16,7 +16,7 @@ const SearchField: FC<ISearchField> = ({ searchTerm, handleSearch }) => {
         <input
           className={styles.input}
           type="text"
-          placeholder={"Поиск аниме"}
+          placeholder={"Поиск друзей"}
           value={searchTerm}
           onChange={handleSearch}
         />

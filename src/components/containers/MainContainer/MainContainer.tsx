@@ -1,7 +1,11 @@
 import { FC, ReactNode } from "react"
-
+import styles from "./MainContainer.module.scss"
 const MainContainer: FC<{ children: ReactNode }> = ({ children }) => {
-  return <main>{children}</main>
+  return (
+    <div className={styles.mainContainer}>
+      <main className={styles.main}>{children}</main>
+    </div>
+  )
 }
 
 export default MainContainer

@@ -27,7 +27,11 @@ const AuthProvider: FC<{ children: ReactNode; Component: AppProps }> = ({
     const refreshToken = Cookies.get("refreshToken")
     if (!refreshToken && user) logout()
   }, [pathname])
-  return <div className={roboto.className}>{children}</div>
+  return (
+    <div className={roboto.className} style={{ height: "100%" }}>
+      {children}
+    </div>
+  )
 }
 
 export default AuthProvider
