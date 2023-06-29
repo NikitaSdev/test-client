@@ -2,9 +2,14 @@ import axios from "axios"
 import { API_URL, getUsersUrl } from "@/src/config/api.config"
 import { toastr } from "react-redux-toastr"
 import { IUpdateProfile } from "@/src/interfaces/user.interface"
-import { FormEvent, FormEventHandler } from "react"
+import { FormEvent } from "react"
 
 export const UserService = {
+  async findByName(name: string) {
+    return await axios.get(`${API_URL}${getUsersUrl("/findUser")}`, {
+      params: { name }
+    })
+  },
   async getAnotherUserDeeds(yourId: number, anotherUserId: number) {
     try {
       const { data } = await axios.post(
@@ -21,6 +26,23 @@ export const UserService = {
   async getUsersCount() {
     const { data } = await axios.get(`${API_URL}${getUsersUrl("/users-count")}`)
     return data
+  },
+  async sendFriendRequest(senderId: number, receiverId: number) {
+    return await axios.post(`${API_URL}${getUsersUrl("/sendFriendRequest")}`, {
+      senderId,
+      receiverId
+    })
+  },
+  async getSentFriendRequests(userId: number) {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}${getUsersUrl("/getSentFriendRequests")}`,
+        { id: userId }
+      )
+      return data
+    } catch (e) {
+      toastr.error("Что-то пошло не так", "")
+    }
   },
   async getFriendRequest(userId: number) {
     try {

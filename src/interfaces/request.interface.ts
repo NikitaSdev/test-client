@@ -1,4 +1,4 @@
-export interface ISender {
+export interface ISenderAndReceiver {
   id: number
   description: string
   name: string
@@ -8,5 +8,6 @@ export interface IRequest {
   id: number
   createdAt: Date
   status: "pending" | "accepted" | "declined"
-  sender: ISender
+  sender: ISenderAndReceiver
+  receiver: ISenderAndReceiver
 }
