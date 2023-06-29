@@ -3,10 +3,19 @@ import { API_URL, getUsersUrl } from "@/src/config/api.config"
 import { toastr } from "react-redux-toastr"
 
 export const UserService = {
-  async getOne() {
-    const { data } = await axios.get(`${API_URL}${getUsersUrl("")}`)
-    return data
+  async getAnotherUserDeeds(yourId: number, anotherUserId: number) {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}${getUsersUrl("/anotherUser")}`,
+        { yourId, anotherUserId }
+      )
+
+      return data
+    } catch (e) {
+      toastr.error("Что-то пошло не так", "")
+    }
   },
+
   async getUsersCount() {
     const { data } = await axios.get(`${API_URL}${getUsersUrl("/users-count")}`)
     return data
@@ -25,10 +34,9 @@ export const UserService = {
 
   async findById(id: number) {
     try {
-      const { data } = await axios.get(`${API_URL}${getUsersUrl("/user")}`, {
-        data: { id: id }
+      const { data } = await axios.post(`${API_URL}${getUsersUrl("/user")}`, {
+        id: id
       })
-      console.log(data)
       return data
     } catch (e) {
       toastr.error("Что-то пошло не так", "")

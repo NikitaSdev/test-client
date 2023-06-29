@@ -3,6 +3,7 @@ import Field from "@/src/components/ui/form-elements/Field"
 import { IDeedCreate } from "@/src/interfaces/deed.interface"
 import { Dispatch, FC, SetStateAction, useState } from "react"
 import { DeedService } from "@/src/services/deed.service"
+import { useAuth } from "@/src/hooks/useAuth"
 
 const CreateDeed: FC<{
   setIsRefetchNeeded: Dispatch<SetStateAction<boolean>>
@@ -10,10 +11,14 @@ const CreateDeed: FC<{
   const { register, handleSubmit } = useForm<IDeedCreate>({
     mode: "onChange"
   })
+  const { user } = useAuth()
   const [isEditMode, setIsEditMode] = useState(false)
   const onSubmit: SubmitHandler<IDeedCreate> = async (data) => {
-    await DeedService.createDeed(data)
-    setIsRefetchNeeded((prev) => !prev)
+    if (user) {
+      data.userId = user.id
+      await DeedService.createDeed(data)
+      setIsRefetchNeeded((prev) => !prev)
+    }
   }
   return (
     <section>
