@@ -3,6 +3,10 @@ import { API_URL, getUsersUrl } from "@/src/config/api.config"
 import { toastr } from "react-redux-toastr"
 
 export const UserService = {
+  async getOne() {
+    const { data } = await axios.get(`${API_URL}${getUsersUrl("")}`)
+    return data
+  },
   async getUsersCount() {
     const { data } = await axios.get(`${API_URL}${getUsersUrl("/users-count")}`)
     return data
@@ -18,11 +22,13 @@ export const UserService = {
       toastr.error("Что-то пошло не так", "")
     }
   },
+
   async findById(id: number) {
     try {
       const { data } = await axios.get(`${API_URL}${getUsersUrl("/user")}`, {
         data: { id: id }
       })
+      console.log(data)
       return data
     } catch (e) {
       toastr.error("Что-то пошло не так", "")
@@ -44,5 +50,13 @@ export const UserService = {
         requestId
       }
     )
+  },
+  async deleteFriend(userId: number, friendId: number) {
+    return await axios.delete(`${API_URL}${getUsersUrl("/friend")}`, {
+      data: {
+        userId,
+        friendId
+      }
+    })
   }
 }

@@ -4,13 +4,8 @@ export interface IUser {
   id: number
   email: string
   name: string
-}
-export interface IUserState {
-  avatarURL: string
-  wrapperURL: string
-  id: number
-  email: string
-  name: string
+  description: string
+  friends: Array<IUser>
 }
 
 export interface ITokens {
@@ -18,7 +13,7 @@ export interface ITokens {
   refreshToken: string
 }
 export interface IInitialState {
-  user: IUserState | null
+  user: IUser | null
   isLoading: boolean
 }
 export interface IRegister {

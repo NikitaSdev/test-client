@@ -3,6 +3,7 @@ import logo from "@/src/assets/images/logo.svg"
 import { useAuth } from "@/src/hooks/useAuth"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import Link from "next/link"
 const Header = () => {
   const [isClient, setIsClient] = useState(false)
 
@@ -16,8 +17,12 @@ const Header = () => {
       <Image src={logo} alt={"Хорошие дела"} />
       <nav>
         <ul>
-          <li>Друзья</li>
-          <li>Добрые дела</li>
+          <li>
+            <Link href={"/friends"}>Друзья</Link>
+          </li>
+          <li>
+            <Link href={"/good-deeds"}>Добрые дела</Link>
+          </li>
         </ul>
       </nav>
       {isClient && user ? (
