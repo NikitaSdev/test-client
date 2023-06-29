@@ -15,7 +15,7 @@ export const useSearch = () => {
       enabled: !!debouncedSearch
     }
   )
-  console.log(data)
+
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)
   }
