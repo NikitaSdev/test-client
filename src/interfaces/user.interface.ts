@@ -31,3 +31,9 @@ export interface ILogin {
 export interface IAuthResponse extends ITokens {
   user: IUser
 }
+export interface IUpdateProfile {
+  id: number
+  wrapperURL: string
+  avatarURL: string
+  name: string
+}

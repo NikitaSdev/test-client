@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAuth } from "@/src/hooks/useAuth"
 import { useRouter } from "next/router"
 import MainContainer from "@/src/components/containers/MainContainer/MainContainer"
@@ -10,7 +10,7 @@ const FriendsPage = () => {
   useEffect(() => {
     if (!user) router.replace("/")
   })
-
+  const [isFind, setIsFind] = useState(false)
   return (
     <MainContainer>
       <FriendList />

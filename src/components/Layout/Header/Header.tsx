@@ -27,8 +27,10 @@ const Header = () => {
       </nav>
       {isClient && user ? (
         <button>
-          <Image src={user.avatarURL} alt={"Аватар"} width={25} height={25} />
-          <p>{user.name}</p>
+          <Link href={"/profile"}>
+            <Image src={user.avatarURL} alt={"Аватар"} width={25} height={25} />
+            <p>{user.name}</p>
+          </Link>
         </button>
       ) : (
         <button onClick={() => router.push("auth")}>

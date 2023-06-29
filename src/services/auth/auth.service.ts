@@ -6,6 +6,8 @@ import { IAuthResponse } from "@/src/interfaces/user.interface"
 import Cookies from "js-cookie"
 import { getContentType } from "@/src/utils/api.helpers"
 import { API_URL, getAuthUrl } from "@/src/config/api.config"
+import { useRouter } from "next/router"
+import { checkAuth } from "@/src/store/user/user.actions"
 
 export const AuthService = {
   async register(email: string, password: string, login: string, name: string) {
@@ -42,6 +44,7 @@ export const AuthService = {
   logout() {
     removeTokensStorage()
     localStorage.removeItem("user")
+    checkAuth()
   },
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken")

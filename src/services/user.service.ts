@@ -1,6 +1,8 @@
 import axios from "axios"
 import { API_URL, getUsersUrl } from "@/src/config/api.config"
 import { toastr } from "react-redux-toastr"
+import { IUpdateProfile } from "@/src/interfaces/user.interface"
+import { FormEvent, FormEventHandler } from "react"
 
 export const UserService = {
   async getAnotherUserDeeds(yourId: number, anotherUserId: number) {
@@ -66,5 +68,14 @@ export const UserService = {
         friendId
       }
     })
+  },
+  async updateUser(data: IUpdateProfile | FormEvent<HTMLFormElement>) {
+    try {
+      console.log(data)
+
+      return await axios.patch(`${API_URL}${getUsersUrl("/profile")}`, data)
+    } catch (e) {
+      toastr.error("Что-то пошло не так", "")
+    }
   }
 }
