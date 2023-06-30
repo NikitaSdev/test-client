@@ -5,7 +5,7 @@ import { IField } from "@/src/interfaces/form.interface"
 
 import styles from "./Form.module.scss"
 
-const Field = forwardRef<any, IField & { label?: string }>(
+const Field = forwardRef<HTMLInputElement, IField & { label?: string }>(
   ({ placeholder, label, error, type = "text", style, ...rest }, ref) => {
     return (
       <div className={clsx(styles.common, styles.field)} style={style}>

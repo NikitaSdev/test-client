@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react"
+import { FC, ReactNode } from "react"
 
 import { Provider } from "react-redux"
 
@@ -11,6 +11,7 @@ import HeadProvider from "./HeadProvider/HeadProvider"
 import ReduxToast from "./ReduxToast"
 import { QueryClient } from "@tanstack/query-core"
 import { QueryClientProvider } from "@tanstack/react-query"
+import { NextComponentType } from "next"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,10 +21,10 @@ const queryClient = new QueryClient({
   }
 })
 
-const MainProvider: FC<{ children: ReactNode; Component: any }> = ({
-  children,
-  Component
-}) => {
+const MainProvider: FC<{
+  children: ReactNode
+  Component: NextComponentType
+}> = ({ children, Component }) => {
   return (
     <HeadProvider>
       <Provider store={store}>

@@ -3,13 +3,13 @@ import { useDate } from "@/src/hooks/useDate"
 import { UserService } from "@/src/services/user.service"
 import { BsFillPersonDashFill, BsFillPersonPlusFill } from "react-icons/bs"
 import Image from "next/image"
-import { ISender } from "@/src/interfaces/request.interface"
+import { ISenderAndReceiver } from "@/src/interfaces/request.interface"
 
 interface IRequestCard {
   requestId: number
   userId: number
   createdAt: Date
-  sender: ISender
+  sender: ISenderAndReceiver
   setIsRefetchNeeded: Dispatch<SetStateAction<boolean>>
 }
 

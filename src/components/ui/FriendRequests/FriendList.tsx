@@ -6,7 +6,6 @@ import { v4 } from "uuid"
 import { IRequest } from "@/src/interfaces/request.interface"
 import { useEffect, useState } from "react"
 import { checkAuth } from "@/src/store/user/user.actions"
-import { date } from "zod"
 import { IUser } from "@/src/interfaces/user.interface"
 import FriendCard from "@/src/components/ui/FriendRequests/FriendCard"
 

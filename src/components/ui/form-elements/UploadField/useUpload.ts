@@ -4,12 +4,13 @@ import { toastError } from "@/src/utils/toastError"
 import { FileService } from "@/src/services/file.service"
 
 type TypeUpload = (
-  onChange: (...event: any[]) => void,
+  onChange: (event: string) => void,
   folder?: string
 ) => {
   uploadImage: (e: ChangeEvent<HTMLInputElement>) => Promise<void>
   isLoading: boolean
 }
+
 export const useUpload: TypeUpload = (onChange, folder) => {
   const [isLoading, setIsLoading] = useState(false)
 

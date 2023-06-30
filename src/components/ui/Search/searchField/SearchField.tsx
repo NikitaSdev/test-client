@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, SetStateAction, useEffect, useState } from "react"
+import { ChangeEvent, FC } from "react"
 
 import styles from "./SearchField.module.scss"
 import { MdSearch } from "react-icons/md"

@@ -1,5 +1,4 @@
 import Meta from "@/src/utils/meta/Meta"
-import MainContainer from "@/src/components/containers/MainContainer/MainContainer"
 import { GetStaticProps } from "next"
 import { UserService } from "@/src/services/user.service"
 import { DeedService } from "@/src/services/deed.service"
