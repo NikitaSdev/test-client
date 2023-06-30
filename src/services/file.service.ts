@@ -10,8 +10,7 @@ export const FileService = {
       {
         params: { folder },
         headers: {
-          "Content-Type": "multipart/form-data",
-          "ngrok-skip-browser-warning": "69420"
+          "Content-Type": "multipart/form-data"
         }
       }
     )
