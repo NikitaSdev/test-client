@@ -56,7 +56,7 @@ const Profile = () => {
   ) : (
     user && (
       <>
-        <Meta title={"Профиль"} />
+        <Meta title={"Профиль"} description={"Ваш профиль"} />
         <section
           className={styles.profile}
           style={{

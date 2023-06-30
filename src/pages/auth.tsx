@@ -4,7 +4,7 @@ import AuthPage from "@/src/components/screens/AuthPage/AuthPage"
 export default function Auth() {
   return (
     <>
-      <Meta title={"Авторизация"} />
+      <Meta title={"Авторизация"} description={"Вход в аккаунт"} />
       <AuthPage />
     </>
   )

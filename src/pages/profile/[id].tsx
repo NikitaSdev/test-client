@@ -32,7 +32,10 @@ const Profile: FC<{ id: string }> = ({ id }) => {
   return (
     !isLoading && (
       <>
-        <Meta title={anotherUser.name} />
+        <Meta
+          title={anotherUser.name}
+          description={`Профиль пользователя ${anotherUser.name}`}
+        />
         <section style={{ background: `url(${anotherUser.wrapperURL})` }}>
           <Image
             src={anotherUser.avatarURL}

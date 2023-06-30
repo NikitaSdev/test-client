@@ -4,7 +4,7 @@ import FriendsPage from "@/src/components/screens/FriendsPage/FriendsPage"
 const Friends = () => {
   return (
     <>
-      <Meta title={"Друзья"} />
+      <Meta title={"Друзья"} description={"Список друзей"} />
       <FriendsPage />
     </>
   )

@@ -25,7 +25,10 @@ const GoodDeeds = () => {
   console.log(data)
   return (
     <>
-      <Meta title={"Ваши добрые дела"} />
+      <Meta
+        title={"Ваши добрые дела"}
+        description={"Просмотр ваших хороших дел"}
+      />
       <CreateDeed setIsRefetchNeeded={setIsRefetchNeeded} />
       {!isLoading && data && (
         <section onClick={() => setIsRefetchNeeded((prev) => !prev)}>

@@ -20,7 +20,7 @@ export default function Home({
   }, [])
   return (
     <>
-      <Meta title={"Главная"} />
+      <Meta title={"Главная"} description={"Хорошие дела"} />
 
       <section>
         <h1>На этом сайте вы можете записывать свои добрые дела</h1>
